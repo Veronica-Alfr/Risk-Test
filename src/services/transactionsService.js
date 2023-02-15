@@ -2,10 +2,10 @@ const dataClients = require('../models/transactionsModel');
 
 const allData = () => dataClients;
 
-const denyManyTransactions = (id) => {
+const denyManyTransactions = (id, dateBody) => {
    const dataByUser = dataClients.filter((client) => Number(client.user_id) === Number(id));
 
-   const thirtyMinutes = new Date(new Date() - new Date(1800000));
+   const thirtyMinutes = new Date(new Date(dateBody) - new Date(1800000));
    const dataByDate = dataByUser.filter((client) => {
       if (new Date(client.transaction_date) >= thirtyMinutes) {
          return true;

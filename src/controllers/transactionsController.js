@@ -7,17 +7,9 @@ const datas = (req, res) => {
 };
 
 const denyManyTransactionsController = (req, res) => {
-    const dataUserId = denyManyTransactions(req.body.user_id);
+    const dataUserId = denyManyTransactions(req.body.user_id, req.body.transaction_date);
     const quantityTransactions = [...dataUserId, Number(req.body.user_id)];
-
-    // const dates = datesTransaction(req.body.user_id);
-
-    // const dateLast = dates[dates.length - 1];
-    // const dateCurrent = new Date(req.body.transaction_date);
-
-    // const diffMilliseconds = dateCurrent - dateLast;
-    // const diffMinutes = Math.round(diffMilliseconds / (1000 * 60));
-    // console.log(diffMinutes);
+    console.log(quantityTransactions);
 
     if (quantityTransactions.length > 4) {
         return res.status(401).json({ message: 'Transaction Denied' });
