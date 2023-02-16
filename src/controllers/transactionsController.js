@@ -1,4 +1,4 @@
-const { denyManyTransactions, allData } = require('../services/transactionsService');
+const { denyManyTransactions, allData, isChargebacks } = require('../services/transactionsService');
 const dataClients = require('../models/transactionsModel');
 
 const datas = (req, res) => {
@@ -9,7 +9,13 @@ const datas = (req, res) => {
 const denyManyTransactionsController = (req, res) => {
     const dataUserId = denyManyTransactions(req.body.user_id, req.body.transaction_date);
     const quantityTransactions = [...dataUserId, Number(req.body.user_id)];
-    console.log(quantityTransactions);
+
+    const userFraudulent = isChargebacks(req.body.user_id);
+
+    if (userFraudulent) {
+        return res.status(401)
+        .json({ message: 'Sorry, there seems to be something wrong with your transactions.' });
+    }
 
     if (quantityTransactions.length > 4) {
         return res.status(401).json({ message: 'Transaction Denied' });

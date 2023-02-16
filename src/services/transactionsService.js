@@ -25,4 +25,10 @@ const datesTransaction = (id) => { // desabilitado retorno de callback para arra
    return sortDates;
 };
 
-module.exports = { denyManyTransactions, datesTransaction, allData };
+const isChargebacks = (id) => {
+   const getCbk = dataClients.filter((client) => client.has_cbk === 'TRUE');
+   const findUserFraudulent = getCbk.find((client) => client.user_id === id);
+   return findUserFraudulent;
+};
+
+module.exports = { denyManyTransactions, datesTransaction, isChargebacks, allData };
