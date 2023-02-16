@@ -1,7 +1,5 @@
 const dataClients = require('../models/transactionsModel');
 
-const allData = () => dataClients;
-
 const denyManyTransactions = (id, dateBody) => {
    const dataByUser = dataClients.filter((client) => Number(client.user_id) === Number(id));
 
@@ -18,7 +16,7 @@ const denyManyTransactions = (id, dateBody) => {
    return data;
 };
 
-const datesTransaction = (id) => { // desabilitado retorno de callback para arrays
+const datesTransaction = (id) => {
    const dataByUser = dataClients.filter((client) => Number(client.user_id) === Number(id));
    const dates = dataByUser.map((customer) => new Date(customer.transaction_date));
    const sortDates = dates.sort((a, b) => a - b);
@@ -31,4 +29,4 @@ const isChargebacks = (id) => {
    return findUserFraudulent;
 };
 
-module.exports = { denyManyTransactions, datesTransaction, isChargebacks, allData };
+module.exports = { denyManyTransactions, datesTransaction, isChargebacks };

@@ -1,10 +1,5 @@
-const { denyManyTransactions, allData, isChargebacks } = require('../services/transactionsService');
+const { denyManyTransactions, isChargebacks } = require('../services/transactionsService');
 const dataClients = require('../models/transactionsModel');
-
-const datas = (req, res) => {
-    const data = allData();
-    return res.status(200).json(data);
-};
 
 const denyManyTransactionsController = (req, res) => {
     const dataUserId = denyManyTransactions(req.body.user_id, req.body.transaction_date);
@@ -25,4 +20,4 @@ const denyManyTransactionsController = (req, res) => {
     return res.status(200).json({ message: 'Transaction Approved' });
 };
 
-module.exports = { denyManyTransactionsController, datas };
+module.exports = { denyManyTransactionsController };
