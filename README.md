@@ -25,10 +25,12 @@
     1° -> Clone o Repositório da branch 'master'.
     
     2° -> Rode npm install para instalar as depedências.
-    
-    3° -> Agora é só rodar o comando npm run dev até aparecer a mensagem 'Listenning in port 3000'
 
-    4° -> Pronto, passe um body como esse no Postaman ou qualquer outra plataforma que visualize requisições:
+    3° -> Rode 'node readCsv.js' em './src/data', e apague o '.' do arquivo json criado.
+    
+    4° -> Agora é só rodar o comando npm run dev até aparecer a mensagem 'Listenning in port 3000'
+
+    5° -> Pronto, passe um body como esse no Postaman ou qualquer outra plataforma que visualize requisições:
 
         {
             "transaction_id" : 2342357 ,
